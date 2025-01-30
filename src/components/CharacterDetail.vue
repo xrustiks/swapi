@@ -1,4 +1,3 @@
-<!-- src/components/CharacterDetail.vue -->
 <template>
   <div class="character-details" v-if="character">
     <h2>{{ character.name }}</h2>
@@ -12,10 +11,28 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: ['character']
-};
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
+interface Character {
+  name: string;
+  height: string;
+  mass: string;
+  hair_color: string;
+  skin_color: string;
+  eye_color: string;
+  birth_year: string;
+  gender: string;
+}
+
+export default defineComponent({
+  props: {
+    character: {
+      type: Object as PropType<Character>,
+      required: false
+    }
+  }
+});
 </script>
 
 <style src="./CharacterDetail.css"></style>
