@@ -1,6 +1,6 @@
 <!-- src/App.vue -->
 <template>
-  <div>
+  <div class="main-container">
     <CharacterList @character-selected="selectedCharacter = $event" />
     <CharacterDetail v-if="selectedCharacter" :character="selectedCharacter" />
   </div>
@@ -17,3 +17,5 @@
     }
   };
 </script>
+
+<style src="./App.css"></style>
