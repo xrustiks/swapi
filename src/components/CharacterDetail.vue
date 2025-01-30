@@ -1,6 +1,6 @@
 <!-- src/components/CharacterDetail.vue -->
 <template>
-  <div v-if="character">
+  <div class="character-details" v-if="character">
     <h2>{{ character.name }}</h2>
     <p>Height: {{ character.height }} cm</p>
     <p>Mass: {{ character.mass }} kg</p>
@@ -17,3 +17,5 @@ export default {
   props: ['character']
 };
 </script>
+
+<style src="./CharacterDetail.css"></style>
