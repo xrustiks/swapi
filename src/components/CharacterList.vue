@@ -4,11 +4,11 @@
     <button @click="prevPage" :disabled="!prev">Previous</button>
     <button @click="nextPage" :disabled="!next">Next</button>
 
-    <ul>
-      <li v-for="character in characters" :key="character.url" @click="selectCharacter(character)">
+    <div class="characters-list">
+      <div class="character" v-for="character in characters" :key="character.url" @click="selectCharacter(character)">
         {{ character.name }}
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
