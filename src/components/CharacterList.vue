@@ -2,14 +2,17 @@
 <template>
   <div>
     <h1>Star Wars Characters</h1>
-    <button @click="prevPage" :disabled="!prev">Previous</button>
-    <button @click="nextPage" :disabled="!next">Next</button>
+    <div class="buttons">
+      <div class="button" @click="prevPage">Previous</div>
+      <div class="button" @click="nextPage">Next</div>
+    </div>
+    
 
-    <ul class="characters-list">
-      <li class="character" v-for="character in characters" :key="character.url" @click="selectCharacter(character)">
+    <div class="characters-list">
+      <div class="character" v-for="character in characters" :key="character.url" @click="selectCharacter(character)">
         {{ character.name }}
-      </li>
-    </ul>
+      </div>
+    </div>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
