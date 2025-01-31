@@ -1,15 +1,21 @@
-// src/components/CharacterList.vue
 <template>
   <div>
     <h1>Star Wars Characters</h1>
+    
+    <input class="search" v-model="searchQuery" placeholder="Search characters..." />
+    
     <div class="buttons">
       <div class="button" @click="prevPage">Previous</div>
       <div class="button" @click="nextPage">Next</div>
     </div>
     
-
     <div class="characters-list">
-      <div class="character" v-for="character in characters" :key="character.url" @click="selectCharacter(character)">
+      <div
+        class="character" 
+        v-for="character in filteredCharacters" 
+        :key="character.url" 
+        @click="selectCharacter(character)"
+      >
         {{ character.name }}
       </div>
     </div>
@@ -18,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue';
 
 interface Character {
   name: string;
@@ -44,6 +50,7 @@ export default defineComponent({
     const next = ref<string | null>(null);
     const prev = ref<string | null>(null);
     const error = ref<string | null>(null);
+    const searchQuery = ref<string>('');
     const apiUrl = 'https://swapi.dev/api/people/';
 
     const fetchCharacters = async (url: string) => {
@@ -73,11 +80,17 @@ export default defineComponent({
       emit('character-selected', character);
     };
 
+    const filteredCharacters = computed(() => {
+      return characters.value.filter(character =>
+        character.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
+    });
+
     onMounted(() => {
       fetchCharacters(apiUrl);
     });
 
-    return { characters, next, prev, error, nextPage, prevPage, selectCharacter };
+    return { characters, next, prev, error, searchQuery, filteredCharacters, nextPage, prevPage, selectCharacter };
   }
 });
 </script>
