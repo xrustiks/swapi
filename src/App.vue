@@ -1,4 +1,3 @@
-<!-- src/App.vue -->
 <template>
   <div class="main-container">
     <CharacterList @character-selected="selectedCharacter = $event" />
